@@ -1,6 +1,8 @@
 ansible-role-bagserv
 ====================
 
+[![CI badge](https://github.com/mastaal/ansible-role-bagserv/workflows/CI/badge.svg?event=push)](https://github.com/mastaal/ansible-role-bagserv/actions/workflows/ci.yml)
+
 Ansible role for deploying the bagserv utility from [bagconv](https://github.com/berthubert/bagconv).
 bagserv, developed by Bert Hubert, provides a simple way to interact with the BAG, the official Dutch Building and Addresses database.
 
