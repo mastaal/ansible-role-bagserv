@@ -1,0 +1,41 @@
+---
+# tasks file for bagserv
+- name: "Update repo cache"
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: "Upgrade packages"
+  ansible.builtin.apt:
+    upgrade: true
+
+- name: "Automatically remove unused dependency packages"
+  ansible.builtin.apt:
+    autoremove: true
+
+- name: "Install dependencies"
+  ansible.builtin.apt:
+    pkg:
+      - cmake
+      - libsqlite3-dev
+      - git
+      - g++
+      - zlib1g-dev
+      - unzip
+      - sqlite3
+    state: present
+
+- name: "Download bagconv source code"
+  ansible.builtin.git:
+    repo: "https://github.com/berthubert/bagconv.git"
+    dest: "{{ bagserv_install_path }}"
+    force: "{{ bagserv_force_clone }}"
+    version: "{{ bagserv_version }}"
+    accept_newhostkey: true
+  register: git_checkout
+
+- name: "Build bagconv"
+  ansible.builtin.shell:
+    chdir: "{{ bagserv_install_path }}"
+    cmd: "cmake . && make"
+  when: git_checkout.changed
