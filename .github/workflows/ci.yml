@@ -1,5 +1,6 @@
 ---
-# GitHub Actions configuration based on workflows from Jeff Geerling (MIT licensed)
+# GitHub Actions configuration based on workflows
+# from Jeff Geerling (MIT licensed)
 
 name: CI
 'on':
