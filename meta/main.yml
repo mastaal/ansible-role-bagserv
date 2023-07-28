@@ -2,6 +2,7 @@
 galaxy_info:
   author: Martijn Staal
   namespace: mastaal
+  role_name: bagserv
   description: Ansible role for deploying the bagserv utility from https://github.com/berthubert/bagconv
 
   license: EUPL-1.2
