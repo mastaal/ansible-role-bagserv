@@ -40,6 +40,8 @@
     chdir: "{{ bagserv_install_path }}"
     cmd: "cmake . && make"
   when: git_checkout.changed
+  notify:
+    - "Restart bagserv service"
 
 - name: "Download XML dump"
   ansible.builtin.shell:
@@ -66,3 +68,5 @@
     mode: u=r,g=r,o=r
     backup: true
   notify: "Enable and update systemd service"
+
+# TODO: Add appropriate cron jobs to keep the database up to date.
