@@ -1,2 +1,12 @@
 ---
 # handlers file for bagserv
+- name: "Enable and update systemd service"
+  ansible.builtin.systemd:
+    name: bagserv.service
+    enabled: true
+    daemon_reload: true
+
+- name: "Restart bagserv service"
+  ansible.builtin.systemd:
+    name: bagserv.service
+    state: restarted

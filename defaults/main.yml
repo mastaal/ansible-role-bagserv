@@ -1,6 +1,8 @@
 ---
 # defaults file for bagserv
-bagserv_repo_url: "https://github.com/berthubert/bagconv.git"
+bagserv_repo_url: "https://github.com/mastaal/bagconv.git"
 bagserv_install_path: "/opt/bag/bagconv"
+bagserv_port: 2345
 bagserv_force_clone: true
 bagserv_version: "HEAD"
+systemd_service_install_dir: "/etc/systemd/system/"

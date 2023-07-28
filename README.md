@@ -29,6 +29,11 @@ bagserv_install_path: "/opt/bag/bagconv"
 Path where bagconv is installed. This includes source coude, binaries, downloaded XML (zip) files and generated sqlite3 database.
 
 ```
+bagserv_port: 2345
+```
+Port to listen on
+
+```
 bagserv_force_clone: true
 ```
 Whether or not to discard local modifications (force clone).

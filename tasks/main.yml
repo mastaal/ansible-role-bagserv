@@ -23,6 +23,7 @@
       - zlib1g-dev
       - unzip
       - sqlite3
+      - wget
     state: present
 
 - name: "Download bagconv source code"
@@ -39,3 +40,28 @@
     chdir: "{{ bagserv_install_path }}"
     cmd: "cmake . && make"
   when: git_checkout.changed
+
+- name: "Download XML dump"
+  ansible.builtin.shell:
+    chdir: "{{ bagserv_install_path }}"
+    cmd: "./get-bag-xml.sh"
+    # Don't re-download in the ansible role; we make a cron job for that.
+    creates: "{{ bagserv_install_path }}/lvbag-extract-nl.zip"
+  register: download_xml_dump
+  changed_when: download_xml_dump.stdout != "No new BAG is available, not downloading again."
+
+- name: "Generate database"
+  ansible.builtin.shell:
+    chdir: "{{ bagserv_install_path }}"
+    cmd: "./make-database.sh"
+    # Don't re-generate in the role; we make a cron job for it.
+    creates: "{{ bagserv_install_path }}/bag.sqlite"
+
+- name: "Install service file"
+  ansible.builtin.template:
+    src: bagserv.service.j2
+    dest: "{{ systemd_service_install_dir }}/bagserv.service"
+    owner: root
+    group: root
+    mode: u=r,g=r,o=r
+  notify: "Enable and update systemd service"
