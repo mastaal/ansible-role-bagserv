@@ -27,7 +27,7 @@
 
 - name: "Download bagconv source code"
   ansible.builtin.git:
-    repo: "https://github.com/berthubert/bagconv.git"
+    repo: "{{ bagserv_repo_url }}"
     dest: "{{ bagserv_install_path }}"
     force: "{{ bagserv_force_clone }}"
     version: "{{ bagserv_version }}"
