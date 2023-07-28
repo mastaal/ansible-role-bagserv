@@ -10,8 +10,10 @@ Requirements
 ------------
 
 This role is written and tested for Ubuntu (version 22.04 LTS).
+
+**You will need a good internet connection and enough available space to run this role!**
 The fully uncompressed BAG XML dump is about 83GB in size; the compressed zip
-as provided by the Kadaster is about 3GB in size. The generated sqlite3 database is about 11GB, so in order to run this role, be sure your target has enough available space. I recommend using a filesystem that allows for transparent compression, such as ZFS or btrfs.
+as provided by the Kadaster is about 3GB in size. The generated sqlite3 database is about 11GB uncompressed, and about 3.5GB when using ZFS with zstd compression. So in order to run this role, be sure your target has enough available space. I recommend using a filesystem that allows for transparent compression, such as ZFS or btrfs.
 
 Role Variables
 --------------
