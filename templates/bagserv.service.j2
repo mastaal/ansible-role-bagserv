@@ -8,6 +8,7 @@ After=network.target
 
 [Service]
 Restart=always
+WorkingDirectory={{ bagserv_install_path }}
 ExecStart={{ bagserv_install_path }}/bagserv {{ bagserv_port }}
 TimeoutStopSec=20s
 
